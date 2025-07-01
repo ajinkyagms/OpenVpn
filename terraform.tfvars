@@ -1,0 +1,8 @@
+region_name = "us-east-1"
+vpc_cidr = "172.18.0.0/16"
+private_subnet_1a = "172.18.0.0/18"
+private_subnet_1b = "172.18.64.0/18"
+public_subnet_1a = "172.18.128.0/18"
+public_subnet_1b = "172.18.192.0/18"
+
+
