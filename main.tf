@@ -65,4 +65,5 @@ module "ec2"{
     source = "./modules/ec2"
     public_subnet-1a =  module.vpc.public_subnet-1a
     security-group-id = module.security-group.security-group-id
+    region_name = "Mumbai"
 }

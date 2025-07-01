@@ -8,4 +8,8 @@ resource "aws_instance" "openvpn-ec2" {
 #   associate_public_ip_address = true
   key_name = "openvpn-testing"
 
+  tags = {
+        Name = "OpenVpn-${data.aws_region.current.name}"
+    }
+
 }
