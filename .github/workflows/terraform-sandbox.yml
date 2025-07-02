@@ -5,6 +5,15 @@ on:
     branches:
       - main
   workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to plan"
+        required: true
+        default: virginia
+        type: choice
+        options:
+          - virginia
+          - mumbai
 
 permissions:
   id-token: write
@@ -29,7 +38,10 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
+          aws-region: >-
+            ${{ 
+              github.event.inputs.environment == 'mumbai' && 'ap-south-1' || 'us-east-1'
+            }}
 
       - name: Terraform Init
         run: terraform init
@@ -38,8 +50,5 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan
-
-      # - name: Terraform Apply
-      #   run: terraform apply -auto-approve
-
+        run: |
+          terraform plan -var-file="terraform-${{ github.event.inputs.environment }}.tfvars"

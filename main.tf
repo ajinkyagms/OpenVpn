@@ -11,7 +11,11 @@ module "vpc" {
     private_subnet_1b = var.private_subnet_1b
     public_subnet_1a = var.public_subnet_1a 
     public_subnet_1b = var.public_subnet_1b
-  
+    private_subnet_availability_zone_1 = var.private_subnet_availability_zone_1
+    private_subnet_availability_zone_2 = var.private_subnet_availability_zone_2
+    public_subnet_availability_zone_1 = var.public_subnet_availability_zone_1
+    public_subnet_availability_zone_2 = var.public_subnet_availability_zone_2
+    
 }
 
 # ============= for the internet gateway -===============
