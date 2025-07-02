@@ -8,7 +8,7 @@ private_subnet_availability_zone_1 = "ap-south-1a"
 private_subnet_availability_zone_2 = "ap-south-1a"
 public_subnet_availability_zone_1 = "ap-south-1b"
 public_subnet_availability_zone_2 = "ap-south-1b"
-ami = "ami-06e5a963b2dadea6f"
+ami = "ami-01614d815cf856337"
 
 
 
