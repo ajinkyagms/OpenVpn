@@ -1,13 +1,71 @@
-name: Terraform Sandbox Plan Only
+# name: Terraform Sandbox Plan Only
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   workflow_dispatch:
+#     inputs:
+#       environment:
+#         description: "Environment to plan"
+#         required: true
+#         default: virginia
+#         type: choice
+#         options:
+#           - virginia
+#           - mumbai
+
+# permissions:
+#   id-token: write
+#   contents: read
+
+# jobs:
+#   terraform-plan:
+#     runs-on: ubuntu-latest
+#     environment: sandbox
+
+#     steps:
+#       - name: Checkout repository
+#         uses: actions/checkout@v4
+
+#       - name: Setup Terraform
+#         uses: hashicorp/setup-terraform@v3
+#         with:
+#           terraform_version: 1.7.5
+
+#       - name: Configure AWS credentials
+#         uses: aws-actions/configure-aws-credentials@v4
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: >-
+#             ${{ 
+#               github.event.inputs.environment == 'mumbai' && 'ap-south-1' || 'us-east-1'
+#             }}
+
+#       - name: Terraform Init
+#         run: terraform init
+
+#       - name: Terraform Validate
+#         run: terraform validate
+
+#       - name: Terraform Plan
+#         run: |
+#           ENVIRONMENT=${{ github.event.inputs.environment }}
+#           if [ -z "$ENVIRONMENT" ]; then
+#             ENVIRONMENT="virginia"
+#           fi
+#           echo "Selected environment: $ENVIRONMENT"
+#           terraform plan -var-file="terraform-$ENVIRONMENT.tfvars"
+
+
+name: Terraform Sandbox Apply
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
     inputs:
       environment:
-        description: "Environment to plan"
+        description: "Environment to deploy"
         required: true
         default: virginia
         type: choice
@@ -20,7 +78,7 @@ permissions:
   contents: read
 
 jobs:
-  terraform-plan:
+  terraform-deploy:
     runs-on: ubuntu-latest
     environment: sandbox
 
@@ -39,9 +97,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: >-
-            ${{ 
-              github.event.inputs.environment == 'mumbai' && 'ap-south-1' || 'us-east-1'
-            }}
+            ${{ github.event.inputs.environment == 'mumbai' && 'ap-south-1' || 'us-east-1' }}
 
       - name: Terraform Init
         run: terraform init
@@ -52,9 +108,6 @@ jobs:
       - name: Terraform Plan
         run: |
           ENVIRONMENT=${{ github.event.inputs.environment }}
-          if [ -z "$ENVIRONMENT" ]; then
-            ENVIRONMENT="virginia"
-          fi
           echo "Selected environment: $ENVIRONMENT"
           terraform plan -var-file="terraform-$ENVIRONMENT.tfvars"
 
