@@ -59,7 +59,7 @@
 #           terraform plan -var-file="terraform-$ENVIRONMENT.tfvars"
 
 
-name: Terraform Sandbox Apply
+name: OpenVPN Terraform Deployment
 
 on:
   workflow_dispatch:
@@ -110,4 +110,10 @@ jobs:
           ENVIRONMENT=${{ github.event.inputs.environment }}
           echo "Selected environment: $ENVIRONMENT"
           terraform plan -var-file="terraform-$ENVIRONMENT.tfvars"
+
+      - name: Terraform Apply
+        run: |
+          ENVIRONMENT=${{ github.event.inputs.environment }}
+          echo "Selected environment: $ENVIRONMENT"
+          terraform apply -var-file="terraform-$ENVIRONMENT.tfvars"          
 
