@@ -70,10 +70,10 @@ module "ec2"{
 
 #Mumbai Region
 
-# Configure the AWS Provider
-provider "aws" {
-  region = "ap-south-1"
-}
+# # Configure the AWS Provider
+# provider "aws" {
+#   region = "ap-south-1"
+# }
 
 # Create a VPC
 resource "aws_vpc" "mumbai_vpc" {
