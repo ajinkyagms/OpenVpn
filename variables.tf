@@ -8,3 +8,4 @@ variable "private_subnet_availability_zone_1" {}
 variable "private_subnet_availability_zone_2" {}
 variable "public_subnet_availability_zone_1" {}
 variable "public_subnet_availability_zone_2" {}
+variable "ami" {}

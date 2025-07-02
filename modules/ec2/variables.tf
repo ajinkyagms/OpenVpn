@@ -6,7 +6,6 @@ variable "security-group-id" {
   
 }
 
-variable "region_name" {
-  description = "Friendly region name"
-  type        = string
+variable "ami" {
+  
 }

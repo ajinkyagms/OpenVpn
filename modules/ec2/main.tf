@@ -1,5 +1,5 @@
 resource "aws_instance" "openvpn-ec2" {
-  ami           = "ami-06e5a963b2dadea6f"
+  ami           = var.ami
   instance_type = "t3.medium"
   subnet_id     = var.public_subnet-1a
   vpc_security_group_ids = [var.security-group-id]

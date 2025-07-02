@@ -15,7 +15,7 @@ module "vpc" {
     private_subnet_availability_zone_2 = var.private_subnet_availability_zone_2
     public_subnet_availability_zone_1 = var.public_subnet_availability_zone_1
     public_subnet_availability_zone_2 = var.public_subnet_availability_zone_2
-    
+
 }
 
 # ============= for the internet gateway -===============
@@ -67,7 +67,8 @@ module "security-group" {
 
 module "ec2"{
     source = "./modules/ec2"
+    ami = var.ami
     public_subnet-1a =  module.vpc.public_subnet-1a
     security-group-id = module.security-group.security-group-id
-    region_name = "Mumbai"
+
 }
