@@ -6,7 +6,7 @@ public_subnet_1a = "172.18.128.0/18"
 public_subnet_1b = "172.18.192.0/18"
 private_subnet_availability_zone_1 = "us-east-1a"
 private_subnet_availability_zone_2 = "us-east-2a"
-public_subnet_availability_zone_1 = "us-east-1a"
-public_subnet_availability_zone_2 = "us-east-2a"
+public_subnet_availability_zone_1 = "us-east-1b"
+public_subnet_availability_zone_2 = "us-east-2b"
 
 
