@@ -115,5 +115,5 @@ jobs:
         run: |
           ENVIRONMENT=${{ github.event.inputs.environment }}
           echo "Selected environment: $ENVIRONMENT"
-          terraform apply -var-file="terraform-$ENVIRONMENT.tfvars"          
+          terraform apply -auto-approve -var-file="terraform-$ENVIRONMENT.tfvars"          
 
