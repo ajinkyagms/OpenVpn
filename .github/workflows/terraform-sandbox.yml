@@ -51,4 +51,10 @@ jobs:
 
       - name: Terraform Plan
         run: |
-          terraform plan -var-file="terraform-${{ github.event.inputs.environment }}.tfvars"
+          ENVIRONMENT=${{ github.event.inputs.environment }}
+          if [ -z "$ENVIRONMENT" ]; then
+            ENVIRONMENT="virginia"
+          fi
+          echo "Selected environment: $ENVIRONMENT"
+          terraform plan -var-file="terraform-$ENVIRONMENT.tfvars"
+
