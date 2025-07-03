@@ -110,10 +110,16 @@ jobs:
           ENVIRONMENT=${{ github.event.inputs.environment }}
           echo "Selected environment: $ENVIRONMENT"
           terraform plan -var-file="terraform-$ENVIRONMENT.tfvars"
-
-      - name: Terraform Apply
+      
+      - name: Terraform Destroy
         run: |
           ENVIRONMENT=${{ github.event.inputs.environment }}
           echo "Selected environment: $ENVIRONMENT"
-          terraform apply -auto-approve -var-file="terraform-$ENVIRONMENT.tfvars"          
+          terraform destroy -auto-approve -var-file="terraform-$ENVIRONMENT.tfvars"
+
+      # - name: Terraform Apply
+      #   run: |
+      #     ENVIRONMENT=${{ github.event.inputs.environment }}
+      #     echo "Selected environment: $ENVIRONMENT"
+      #     terraform apply -auto-approve -var-file="terraform-$ENVIRONMENT.tfvars"          
 
